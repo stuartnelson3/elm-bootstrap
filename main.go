@@ -18,37 +18,11 @@ func main() {
 	flag.Parse()
 
 	http.HandleFunc("/script.js", func(w http.ResponseWriter, r *http.Request) {
-		f, err := os.Open("dist/script.js")
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		defer f.Close()
-
-		fs, err := f.Stat()
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-
-		http.ServeContent(w, r, "script.js", fs.ModTime(), f)
+		http.ServeFile(w, r, "dist/script.js")
 	})
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		f, err := os.Open("index.html")
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		defer f.Close()
-
-		fs, err := f.Stat()
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-
-		http.ServeContent(w, r, "index", fs.ModTime(), f)
+		http.ServeFile(w, r, "index.html")
 	})
 
 	// Recompile the elm code whenever a change is detected.
