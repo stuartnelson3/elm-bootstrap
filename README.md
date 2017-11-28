@@ -10,12 +10,12 @@ served document.
 ## Requirements
 
 - Go installed (https://golang.org/dl/)
-- This repo is cloned into your `$GOPATH`
 - Elm is installed (https://guide.elm-lang.org/get_started.html)
 
 ## Setup
 
+- Run `go get github.com/stuartnelson3/elm-bootstrap`
 - Run `elm package install -y` to install the elm dependencies listed in `elm-package.json`
-- Run `go run main.go`
+- Run `elm-bootstrap`
 - Make a change in `src/Main.elm` and save (the elm code is only compiled when a file change is detected)
 - Go to `localhost:8080`
